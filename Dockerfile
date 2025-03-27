@@ -34,10 +34,10 @@ RUN apt update && apt install -y git-all \
     apt clean
 
 # Remove existing contents of /cse572 if any
-RUN rm -rf /572/*
+RUN rm -rf /cse572/*
 
 # Copy requirements.txt from the main branch repository
-RUN git clone --branch main https://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@github.com/Ramanuja125/CSE572_project.git /cse572
+RUN git clone --branch main https://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@github.com/Ramanuja125/CSE572_project.git /cse572
 
 # Install Python libraries listed in the requirements.txt file
 RUN pip3 install --no-cache-dir -r /cse572/requirements.txt
