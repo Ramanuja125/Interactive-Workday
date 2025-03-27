@@ -24,7 +24,7 @@ class WorkerIndexer:
         self.db[f"status:{worker['employment_status']}"] = worker_id
 
     def count_workers(self):
-        # Count total number of workers
+        # Count total number of workers stored
         worker_count = 0
         for db_key in self.db.keys():
             if db_key.startswith("worker:"):
@@ -49,21 +49,19 @@ def index_and_store_worker_nodes():
     # Load workers data from the JSON file
     workers = load_workers_from_json("worker_details.json")
 
-    # Since workers['worker'] is a dictionary, process the worker directly
-    worker = workers.get('worker', {})
-
-    if worker:
-        worker['worker_id'] = generate_worker_id()  # Generate a unique worker ID for each entry
-        indexer.store_worker(worker)
+    # Iterate over the list of workers
+    for worker_entry in workers:  # Each entry is a dictionary
+        worker = worker_entry.get("worker", {})  # Extract worker data
+        if worker:
+            worker["worker_id"] = generate_worker_id()  # Generate unique ID
+            indexer.store_worker(worker)
 
     # Get the total number of workers stored
     total_workers = indexer.count_workers()
-
     print(f"Total number of workers stored: {total_workers}")
 
     # Close the database
     indexer.close()
-
 
 if __name__ == "__main__":
     index_and_store_worker_nodes()

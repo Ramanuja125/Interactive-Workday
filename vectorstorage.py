@@ -32,7 +32,6 @@ class WorkerVectorStorage:
         # Store full worker details
         self.worker_details.extend(workers)
 
-
     def search_worker_details(self, query, top_k=3):
         query_embedding = self.model.encode([query], convert_to_tensor=False).astype('float32')
 
@@ -56,31 +55,51 @@ class WorkerVectorStorage:
 
         return results
 
-
 def load_workers_from_json(file_path):
     """Load worker details from a JSON file."""
     with open(file_path, 'r') as f:
         data = json.load(f)
 
-    # Assuming the JSON contains a single worker object, and we need to extract relevant details
-    workers = [{
-        "id": data["worker"]["id"],
-        "worker_id": data["worker"]["worker_id"],
-        "first_name": data["worker"]["first_name"],
-        "last_name": data["worker"]["last_name"],
-        "email": data["worker"]["email"],
-        "job_details": data["worker"]["job_details"],
-        "employment_status": data["worker"]["employment_status"],
-        "hire_date": data["worker"]["hire_date"],
-        "worker_type": data["worker"]["worker_type"],
-        "work_contact": data["worker"]["work_contact"],
-        "home_contact": data["worker"]["home_contact"],
-        "custom_fields": data["worker"]["custom_fields"]
-    }]
-    
-    # Print to confirm data structure
-    print(f"Loaded workers: {workers}")
-    
+    workers = []
+
+    if isinstance(data, list):
+        # Handle multiple worker entries
+        for entry in data:
+            if isinstance(entry, dict) and "worker" in entry:
+                worker = entry["worker"]
+                workers.append({
+                    "id": worker["id"],
+                    "worker_id": worker["worker_id"],
+                    "first_name": worker["first_name"],
+                    "last_name": worker["last_name"],
+                    "email": worker["email"],
+                    "job_details": worker["job_details"],
+                    "employment_status": worker["employment_status"],
+                    "hire_date": worker["hire_date"],
+                    "worker_type": worker["worker_type"],
+                    "work_contact": worker["work_contact"],
+                    "home_contact": worker["home_contact"],
+                    "custom_fields": worker["custom_fields"]
+                })
+    elif isinstance(data, dict) and "worker" in data:
+        # Handle single worker case (in case JSON is not wrapped in a list)
+        worker = data["worker"]
+        workers.append({
+            "id": worker["id"],
+            "worker_id": worker["worker_id"],
+            "first_name": worker["first_name"],
+            "last_name": worker["last_name"],
+            "email": worker["email"],
+            "job_details": worker["job_details"],
+            "employment_status": worker["employment_status"],
+            "hire_date": worker["hire_date"],
+            "worker_type": worker["worker_type"],
+            "work_contact": worker["work_contact"],
+            "home_contact": worker["home_contact"],
+            "custom_fields": worker["custom_fields"]
+        })
+
+    print(f"Total number of workers stored: {len(workers)}")  # Debugging line
     return workers
 
 
@@ -110,8 +129,6 @@ def run_semantic_search(query):
         results_string += "--------------------------------------------------------------------\n"
 
     return results, results_string
-
-
 
 if __name__ == "__main__":
     import argparse
