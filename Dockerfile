@@ -37,7 +37,7 @@ RUN apt update && apt install -y git-all \
 RUN rm -rf /572/*
 
 # Copy requirements.txt from the main branch repository
-RUN git clone --branch main https://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@github.com/Fall-24-CSE511-Data-Processing-at-Scale/Project-6-Group-06.git /cse572
+RUN git clone --branch main https://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@github.com/Ramanuja125/CSE572_project.git /cse572
 
 # Install Python libraries listed in the requirements.txt file
 RUN pip3 install --no-cache-dir -r /cse572/requirements.txt
