@@ -6,7 +6,7 @@
 # Once the container is created, open a shell inside the container with the command:
 # docker exec -it group-project bash
 # Once you are in the bash terminal, run:
-# python3 Code_RAG.py
+# python3 RAG.py
 # Once that is done, you will be prompted to enter a query. Enter your query and wait until the
 # LLM generates a response. Then, you will be prompted to enter a new query or exit system.
 # The build takes lot of time, because we have transformers and torch which takes lot of time.
@@ -53,4 +53,4 @@ CMD ["mysqld_safe", "--user=root", "--plugin-load-add=ha_rocksdb.so"]
 
 RUN python3 download_LLM.py
 
-#CMD ["python3", "Code_RAG.py"]
+#CMD ["python3", "RAG.py"]
