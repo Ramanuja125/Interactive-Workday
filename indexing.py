@@ -11,12 +11,18 @@ class WorkerIndexer:
 
     def store_worker(self, worker):
         worker_id = worker['worker_id']
+        worker_email = worker['email']
+
+        # Check if worker with the same email already exists
+        if f"email:{worker_email}" in self.db:
+            #print(f"Duplicate worker found with email {worker_email}, skipping storage.")
+            return  # Skip storing if it's a duplicate
 
         # Store the full worker record
         self.db[f"worker:{worker_id}"] = json.dumps(worker)
 
         # Index by worker attributes
-        self.db[f"email:{worker['email']}"] = worker_id
+        self.db[f"email:{worker_email}"] = worker_id
         self.db[f"position:{worker['job_details']['position']}"] = worker_id
         self.db[f"department:{worker['job_details']['department']}"] = worker_id
         self.db[f"location:{worker['job_details']['location']}"] = worker_id
@@ -55,7 +61,7 @@ def index_and_store_worker_nodes():
         if worker:
             worker["worker_id"] = generate_worker_id()  # Generate unique ID
             indexer.store_worker(worker)
-
+    
     # Get the total number of workers stored
     total_workers = indexer.count_workers()
     print(f"Total number of workers stored: {total_workers}")
