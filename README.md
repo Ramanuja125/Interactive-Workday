@@ -14,7 +14,7 @@ docker exec -it group-project bash
 
 
 ### To run the program, use the following command:
-python3 Code_RAG.py
+python3 RAG.py
 
 
 Once that is done, you will be prompted to enter a query. Enter your query and wait until the
