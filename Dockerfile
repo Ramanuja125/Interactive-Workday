@@ -34,7 +34,7 @@ RUN apt update && apt install -y git-all \
     apt clean
 
 # Remove existing contents of /cse572 if any
-RUN rm -rf /572/*
+RUN rm -rf /cse572/*
 
 # Copy requirements.txt from the main branch repository
 RUN git clone --branch main https://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@github.com/Ramanuja125/CSE572_project.git /cse572
