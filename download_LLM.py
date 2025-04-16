@@ -1,6 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model_name = "tensoropera/Fox-1-1.6B-Instruct-v0.1"
+model_name = "Qwen/Qwen2.5-0.5B-Instruct"
 
 # Download model
 model = AutoModelForCausalLM.from_pretrained(model_name)
