@@ -1,19 +1,3 @@
-# TO RUN THIS DOCKER FILE
-# First build a docker image with the command:
-# docker build -t group-project-image .
-# Then create a docker container with the command:
-# docker run -d -p 3306:3306 --name group-project group-project-image
-# Once the container is created, open a shell inside the container with the command:
-# docker exec -it group-project bash
-# Once you are in the bash terminal, run:
-# python3 RAG.py
-# Once that is done, you will be prompted to enter a query. Enter your query and wait until the
-# LLM generates a response. Then, you will be prompted to enter a new query or exit system.
-# The build takes lot of time, because we have transformers and torch which takes lot of time.
-# Be prepared for the code to take 25+ minutes to build, depending on system configuration.
-
-# ----------------- code starts from here -------------------------- above has the Dockerfile version and how to run the docker file as container
-# Use Ubuntu 22.04 as the base image
 FROM ubuntu:22.04
 
 # Set non-interactive mode to suppress apt prompts
@@ -37,7 +21,7 @@ RUN apt update && apt install -y git-all \
 RUN rm -rf /cse572/*
 
 # Copy requirements.txt from the main branch repository
-RUN git clone --branch main https://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@github.com/Ramanuja125/CSE572_project.git /cse572
+RUN git clone --branch main <you personal access token here>/Ramanuja125/CSE572_project.git /cse572
 
 # Install Python libraries listed in the requirements.txt file
 RUN pip3 install --no-cache-dir -r /cse572/requirements.txt
