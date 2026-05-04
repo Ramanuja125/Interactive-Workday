@@ -20,7 +20,7 @@ The types of data queried include:
 
 
 ## To run this program
-Clone the repo and inside the Dockerfile on line 40 - create a personal access token and add the value there -
+Clone the repo and inside the Dockerfile on line 24 - create a personal access token and add the value there -
 it would look something like this 
 ```
 https://ghp_fdifiweorqwproqiejqwujeqweiwqjeioqwj@github.com
