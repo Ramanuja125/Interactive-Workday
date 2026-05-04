@@ -1,4 +1,12 @@
-# Project-6-Group-06
+# Interactive Workday Assisstant
+## Overview
+ 
+The Interactive Workday Assistant is an internal AI tool that uses Retrieval-Augmented Generation (RAG) combined with a Small Language Model (SLM) to answer HR-related queries securely and contextually. It is designed to help employees retrieve relevant information from Workday without relying on external AI services that could raise data privacy or compliance concerns.
+## Why RAG + SLM?
+ 
+- **Small Language Models (SLMs)** are used because the system has a narrow, well-defined scope, making lightweight models more efficient than large general-purpose ones.
+- **RAG techniques** enable real-time retrieval of relevant and up-to-date information from internal data sources, without retraining the model.
+- **Private sector fit:** RAG-based pipelines can be tailored to match the specific needs of an organization rather than serving general use cases.
 
 ## To run this program
 First build a docker image with the command:\
@@ -7,6 +15,16 @@ Then create a docker container with the command:\
 docker run -d -p 3306:3306 --name group-project group-project-image\
 Once the container is created, open a shell inside the container with the command:\
 docker exec -it group-project bash
+
+## Dataset
+ 
+Data is sourced from the Workday Worker API and converted to a JSON format. For demonstration purposes, a synthetic dataset mirroring the structure of real Workday API responses was used.
+ 
+The types of data queried include:
+- Personal information
+- Job details
+- Employment information
+- Contact information
 
 
 ### To run the testing script, use the following:
