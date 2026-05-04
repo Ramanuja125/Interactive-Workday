@@ -18,6 +18,16 @@ The types of data queried include:
 - Employment information
 - Contact information
 
+## System Architecture
+ 
+The full pipeline runs inside a **Docker** container:
+ 
+```
+GitHub Repository → Data Chunking → RocksDB (Indexing)
+                                          ↓
+User Prompt → Semantic Search (FAISS) → SLM → Response
+```
+
 
 ## To run this program
 Clone the repo and inside the Dockerfile on line 24 - create a personal access token and add the value there -
