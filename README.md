@@ -8,14 +8,6 @@ The Interactive Workday Assistant is an internal AI tool that uses Retrieval-Aug
 - **RAG techniques** enable real-time retrieval of relevant and up-to-date information from internal data sources, without retraining the model.
 - **Private sector fit:** RAG-based pipelines can be tailored to match the specific needs of an organization rather than serving general use cases.
 
-## To run this program
-First build a docker image with the command:\
-docker build -t group-project-image .\
-Then create a docker container with the command:\
-docker run -d -p 3306:3306 --name group-project group-project-image\
-Once the container is created, open a shell inside the container with the command:\
-docker exec -it group-project bash
-
 ## Dataset
  
 Data is sourced from the Workday Worker API and converted to a JSON format. For demonstration purposes, a synthetic dataset mirroring the structure of real Workday API responses was used.
@@ -25,6 +17,20 @@ The types of data queried include:
 - Job details
 - Employment information
 - Contact information
+
+
+## To run this program
+Clone the repo and inside the Dockerfile on line 40 - create a personal access token and add the value there -
+it would look something like this 
+```
+https://ghp_fdifiweorqwproqiejqwujeqweiwqjeioqwj@github.com
+```
+First build a docker image with the command:\
+docker build -t group-project-image .\
+Then create a docker container with the command:\
+docker run -d -p 3306:3306 --name group-project group-project-image\
+Once the container is created, open a shell inside the container with the command:\
+docker exec -it group-project bash
 
 
 ### To run the testing script, use the following:
